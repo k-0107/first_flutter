@@ -9,6 +9,14 @@ class GradientContainer extends StatelessWidget {
   final Color color1;
   final Color color2;
 
+  // const GradientContainer.purple({super.key})
+  //     : color1 = Colors.indigo,
+  //       color2 = Colors.deepPurple;
+
+  void rollDice() {
+    //...
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,8 +27,19 @@ class GradientContainer extends StatelessWidget {
           end: endAlignment,
         ),
       ),
-      child: const Center(
-        child: TextWithStyle("Hello!!"),
+      child: Center(
+        child: Column(
+          children: [
+            Image.asset(
+              "assets/images/dice-2.png",
+              width: 200,
+            ),
+            TextButton(
+              onPressed: rollDice,
+              child: const Text("サイコロを振る"),
+            )
+          ],
+        ),
       ),
     );
   }
