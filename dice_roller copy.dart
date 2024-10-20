@@ -1,16 +1,28 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'dice_provider.dart';
 
-class DiceRoller extends ConsumerWidget {
+final randamizer = Random();
+
+class DiceRoller extends StatefulWidget {
   const DiceRoller({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final currentRollDice = ref.watch(diceNotifierProvider);
+  State<DiceRoller> createState() {
+    return _DiceRollerState();
+  }
+}
+
+class _DiceRollerState extends State<DiceRoller> {
+  var currentRollDice = 2;
+  void rollDice() {
+    setState(() {
+      currentRollDice = randamizer.nextInt(6) + 1;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -22,9 +34,7 @@ class DiceRoller extends ConsumerWidget {
           height: 20,
         ),
         TextButton(
-          onPressed: () {
-            ref.read(diceNotifierProvider.notifier).rollDice();
-          },
+          onPressed: rollDice,
           style: TextButton.styleFrom(
             // padding: const EdgeInsets.only(top: 20),
             foregroundColor: Colors.white,
